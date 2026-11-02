@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Dict, List
+from dataclasses import dataclass
 
 import json
 
@@ -116,7 +117,7 @@ class ApartmentSettlement:
         print(f"Annual Rent: {self.calculate_annual_rent():.2f} PLN")
 
 
-    from dataclasses import dataclass
+    
 
 @dataclass
 class TenantSettlement:
