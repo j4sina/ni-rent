@@ -100,6 +100,21 @@ class Manager:
         self.transfers = Transfer.from_json_file(self.parameters.transfers_json_path)
         self.bills = Bill.from_json_file(self.parameters.bills_json_path)
 
+class ApartmentSettlement:
+    def __init__(self, apartment: str, name: str, rent_pln: float):
+        self.apartment = apartment
+        self.name = name
+        self.rent_pln = rent_pln
+
+    def calculate_annual_rent(self) -> float:
+        return self.rent_pln * 12
+
+    def display_settlement_info(self):
+        print(f"Apartment: {self.apartment}")
+        print(f"Resident Name: {self.name}")
+        print(f"Monthly Rent: {self.rent_pln:.2f} PLN")
+        print(f"Annual Rent: {self.calculate_annual_rent():.2f} PLN")
+
 
 if __name__ == '__main__':
     parameters = Parameters()
