@@ -1,5 +1,7 @@
+from dataclasses import dataclass
+
 from pydantic import BaseModel
-from typing import Dict, List
+from typing import Dict, List, Any
 
 import json
 
@@ -143,16 +145,16 @@ if __name__ == '__main__':
     manager = Manager(parameters)
 
     for apartment in manager.apartments.values():
-        print(apartment.key, apartment.name, apartment.location, apartment.area_m2)
+        print(f"Klucz: {apartment.key} | Mieszkanie: {apartment.name} | Miejsce: {apartment.location} | Powierzchnia: {apartment.area_m2}")
         for room in apartment.rooms.values():
-            print('  ', room.name, room.area_m2)
+            print(f"  Pokój: {room.name} | Powierzchnia: {room.area_m2}")
         
         for bill in manager.bills:
             if bill.apartment == apartment.key:
-                print('  ', bill.amount_pln, bill.date_due, bill.settlement_year, bill.settlement_month, bill.type)
+                print(f"  Kwota: {bill.amount_pln} | Termin: {bill.date_due} | Rok: {bill.settlement_year} | Miesiąc: {bill.settlement_month} | Typ: {bill.type}")
 
     for tenant in manager.tenants.values():
-        print(tenant.name, tenant.apartment, tenant.room, tenant.rent_pln, tenant.deposit_pln, tenant.date_agreement_from, tenant.date_agreement_to)
+        print(f"Najemca: {tenant.name} | Mieszkanie: {tenant.apartment} | Pokój: {tenant.room} | Czynsz: {tenant.rent_pln} | Kaucja: {tenant.deposit_pln} | Umowa od: {tenant.date_agreement_from} | Umowa do: {tenant.date_agreement_to}")
         for transfer in manager.transfers:
             if transfer.tenant == tenant.name:
-                print('  ', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
+                print(f"  Kwota: {transfer.amount_pln} | Data: {transfer.date} | Rok: {transfer.settlement_year} | Miesiąc: {transfer.settlement_month}")
